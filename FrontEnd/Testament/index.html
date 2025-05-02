@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2 class="sidebar-title">Financial Tracker</h2>
+            <button class="sidebar-close" id="closeSidebar">&times;</button>
+        </div>
+        <div class="sidebar-menu">
+            <a href="#" class="menu-item active">
+                <span class="menu-icon">📊</span>
+                Dashboard
+            </a>
+            <a href="#" class="menu-item">
+                <span class="menu-icon">💰</span>
+                Income
+            </a>
+            <a href="#" class="menu-item">
+                <span class="menu-icon">💸</span>
+                Expenses
+            </a>
+            <a href="#" class="menu-item">
+                <span class="menu-icon">📝</span>
+                Transactions
+            </a>
+            <a href="#" class="menu-item">
+                <span class="menu-icon">📈</span>
+                Reports
+            </a>
+            <a href="#" class="menu-item">
+                <span class="menu-icon">🏦</span>
+                Accounts
+            </a>
+            <a href="#" class="menu-item">
+                <span class="menu-icon">🎯</span>
+                Budgets
+            </a>
+            <a href="#" class="menu-item">
+                <span class="menu-icon">🔄</span>
+                Recurring
+            </a>
+            <a href="#" class="menu-item">
+                <span class="menu-icon">⚙️</span>
+                Settings
+            </a>
+        </div>
+    </div>
+    
+    <!-- Overlay for mobile -->
+    <div class="overlay" id="overlay"></div>
+    
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+        <div class="container">
+            <header>
+                <div class="header-left">
+                    <button class="hamburger" id="hamburger">☰</button>
+                    <h1>Dashboard</h1>
+                </div>
+                <div>
+                    <button class="btn" id="addTransactionBtn">+ Add Transaction</button>
+                </div>
+            </header>
+            
+            <section class="dashboard">
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-title">Balance</span>
+                    </div>
+                    <div class="card-value balance">$2,450.75</div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-title">Income</span>
+                    </div>
+                    <div class="card-value income">$3,845.00</div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <span class="card-title">Expenses</span>
+                    </div>
+                    <div class="card-value expense">$1,394.25</div>
+                </div>
+            </section>
+            
+            <section class="chart-container">
+                <div class="chart-header">
+                    <h2 class="chart-title">Monthly Overview</h2>
+                    <div class="chart-tabs">
+                        <div class="chart-tab active">Income vs Expenses</div>
+                        <div class="chart-tab">Categories</div>
+                    </div>
+                </div>
+                <div class="placeholder-chart">
+                    Chart visualization would be integrated here
+                </div>
+            </section>
+            
+            <!-- Monthly Breakdown Table -->
+            <section class="monthly-breakdown">
+                <div class="monthly-header">
+                    <h2 class="monthly-title">Monthly Breakdown</h2>
+                    <div class="year-selector">
+                        <label for="yearSelect">Year:</label>
+                        <select id="yearSelect">
+                            <option value="2025" selected>2025</option>
+                            <option value="2024">2024</option>
+                        </select>
+                    </div>
+                </div>
+                <table class="breakdown-table">
+                    <thead>
+                        <tr>
+                            <th>Month</th>
+                            <th>Income</th>
+                            <th>Expenses</th>
+                            <th>Balance</th>
+                            <th>Savings Rate</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Table rows remain the same as original -->
+                    </tbody>
+                </table>
+            </section>
+            
+            <section class="transaction-section">
+                <div class="transaction-header">
+                    <h2 class="transaction-title">Recent Transactions</h2>
+                    <div>
+                        <select>
+                            <option>All Transactions</option>
+                            <option>Income</option>
+                            <option>Expenses</option>
+                        </select>
+                    </div>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Description</th>
+                            <th class="table-category">Category</th>
+                            <th>Amount</th>
+                            <th class="table-actions">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Table rows remain the same as original -->
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </div>
+    
+    <!-- Add Transaction Modal -->
+    <div class="modal" id="transactionModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Add Transaction</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <form>
+                <div class="form-group">
+                    <label for="type">Transaction Type</label>
+                    <select id="type">
+                        <option value="income">Income</option>
+                        <option value="expense">Expense</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <input type="text" id="description" placeholder="e.g. Grocery Shopping">
+                </div>
+                <div class="form-group">
+                    <label for="amount">Amount</label>
+                    <input type="number" id="amount" placeholder="0.00" step="0.01">
+                </div>
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <select id="category">
+                        <option value="">Select a category</option>
+                        <option value="income">Income</option>
+                        <option value="food">Food</option>
+                        <option value="housing">Housing</option>
+                        <option value="transportation">Transportation</option>
+                        <option value="utilities">Utilities</option>
+                        <option value="entertainment">Entertainment</option>
+                        <option value="healthcare">Healthcare</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="date">Date</label>
+                    <input type="date" id="date">
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-cancel">Cancel</button>
+                    <button type="submit" class="btn">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

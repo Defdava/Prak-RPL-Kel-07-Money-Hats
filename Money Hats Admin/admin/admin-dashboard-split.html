@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Money Hats Admin</title>
+
+<link href="admin-dashboard.css" rel="stylesheet"/><script src="admin-dashboard.js"></script></head>
+<body>
+<!-- Sidebar -->
+<div class="sidebar" id="sidebar">
+<div class="sidebar-header">
+<div class="logo">Money Hats <span class="admin-badge">Admin</span></div>
+</div>
+<div class="sidebar-menu">
+<div class="menu-category">Dashboard</div>
+<a class="menu-item active" href="#">
+<i>📊</i>
+<span>Overview</span>
+</a>
+<a class="menu-item" href="#">
+<i>📈</i>
+<span>Analytics</span>
+</a>
+<a class="menu-item" href="#">
+<i>📑</i>
+<span>Reports</span>
+</a>
+<div class="menu-category">User Management</div>
+<a class="menu-item" href="#">
+<i>👥</i>
+<span>All Users</span>
+</a>
+<a class="menu-item" href="#">
+<i>🔑</i>
+<span>Permissions</span>
+</a>
+<a class="menu-item" href="#">
+<i>🔒</i>
+<span>Security</span>
+</a>
+<div class="menu-category">Finance</div>
+<a class="menu-item" href="#">
+<i>💼</i>
+<span>Transactions</span>
+</a>
+<a class="menu-item" href="#">
+<i>💰</i>
+<span>Income</span>
+</a>
+<a class="menu-item" href="#">
+<i>💸</i>
+<span>Expenses</span>
+</a>
+<div class="menu-category">Settings</div>
+<a class="menu-item" href="#">
+<i>⚙️</i>
+<span>System Settings</span>
+</a>
+<a class="menu-item" href="#">
+<i>🔔</i>
+<span>Notifications</span>
+</a>
+<a class="menu-item" href="#">
+<i>📋</i>
+<span>Logs</span>
+</a>
+</div>
+</div>
+<!-- Main Content -->
+<div class="main-content" id="mainContent">
+<div class="top-bar">
+<div class="left-section">
+<button class="hamburger" id="toggleSidebar">☰</button>
+<div>
+<h1>Admin Dashboard</h1>
+<span class="page-subtitle">Welcome back, Admin</span>
+</div>
+</div>
+<div class="right-section">
+<button class="dark-mode-toggle" id="darkModeToggle">🌓</button>
+<div class="user-profile">
+<button class="profile-button" id="profileButton">
+<div class="profile-avatar">A</div>
+<div class="profile-info">
+<span class="profile-name">Admin User</span>
+<span class="profile-role">Super Admin</span>
+</div>
+</button>
+<div class="profile-dropdown" id="profileDropdown">
+<a class="dropdown-item" href="#">
+<i>👤</i>
+<span>My Profile</span>
+</a>
+<a class="dropdown-item" href="#">
+<i>⚙️</i>
+<span>Settings</span>
+</a>
+<div class="dropdown-divider"></div>
+<a class="dropdown-item" href="#">
+<i>🔒</i>
+<span>Lock Account</span>
+</a>
+<a class="dropdown-item" href="#">
+<i>🚪</i>
+<span>Sign Out</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+<section class="dashboard">
+<div class="card">
+<div class="card-header">
+<span class="card-title">Total Users</span>
+</div>
+<div class="card-value">2,845</div>
+<div class="card-trend trend-up">
+<span>↑ 12%</span>
+<span>Since last month</span>
+</div>
+</div>
+<div class="card">
+<div class="card-header">
+<span class="card-title">Active Users</span>
+</div>
+<div class="card-value">1,943</div>
+<div class="card-trend trend-up">
+<span>↑ 8%</span>
+<span>Since last month</span>
+</div>
+</div>
+<div class="card">
+<div class="card-header">
+<span class="card-title">Total Revenue</span>
+</div>
+<div class="card-value">$52,945</div>
+<div class="card-trend trend-up">
+<span>↑ 15%</span>
+<span>Since last month</span>
+</div>
+</div>
+<div class="card">
+<div class="card-header">
+<span class="card-title">Support Tickets</span>
+</div>
+<div class="card-value">24</div>
+<div class="card-trend trend-down">
+<span>↓ 5%</span>
+<span>Since last month</span>
+</div>
+</div>
+</section>
+<section class="content-section">
+<div class="section-header">
+<h2 class="section-title">User Management</h2>
+<div class="header-actions">
+<button class="btn btn-outline">Export</button>
+<button class="btn btn-primary" id="addUserBtn">+ Add User</button>
+</div>
+</div>
+<div class="search-bar">
+<input class="search-input" placeholder="Search users..." type="text"/>
+<button class="search-button">🔍</button>
+</div>
+<table>
+<thead>
+<tr>
+<th>User</th>
+<th>Role</th>
+<th>Status</th>
+<th>Last Login</th>
+<th>Registered</th>
+<th>Actions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<div class="user-cell">
+<div class="user-avatar">JS</div>
+<div class="user-info">
+<div class="user-name">John Smith</div>
+<div class="user-email">john@example.com</div>
+</div>
+</div>
+</td>
+<td>User</td>
+<td><span class="status-badge status-active">Active</span></td>
+<td>Today, 2:45 PM</td>
+<td>Jan 15, 2025</td>
+<td>
+<div class="table-actions">
+<button class="action-btn">Edit</button>
+<button class="action-btn">View</button>
+<button class="action-btn">Delete</button>
+</div>
+</td></tr></tbody></table></section></div></body></html>
