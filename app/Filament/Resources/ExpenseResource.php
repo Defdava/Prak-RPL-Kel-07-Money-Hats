@@ -20,7 +20,7 @@ class ExpenseResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-trending-down';
 
-    protected static ?string $navigationGroup = 'Income/Expense';
+    protected static ?string $navigationGroup = 'Transactions';
 
     public static function form(Form $form): Form
     {

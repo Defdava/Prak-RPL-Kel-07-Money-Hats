@@ -7,23 +7,23 @@
     "require": {
         "php": "^7.3 || ^8.0 || ^8.2",
         "akaunting/laravel-money": "^1.2",
+        "blade-ui-kit/blade-heroicons": "^1.5",
         "doctrine/dbal": "^3.3",
         "filament/filament": "^2.10",
-        "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
-        "laravel/framework": "^8.75",
-        "laravel/sanctum": "^2.11",
+        "laravel/framework": "^10.48.29",
+        "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.5",
         "squirephp/countries-en": "^3.2",
         "squirephp/currencies-en": "^3.2"
     },
     "require-dev": {
-        "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.4",
-        "nunomaduro/collision": "^5.10",
-        "phpunit/phpunit": "^9.5.10"
+        "nunomaduro/collision": "^7.0",
+        "phpunit/phpunit": "^9.5.10",
+        "spatie/laravel-ignition":"^2.0"
     },
     "autoload": {
         "psr-4": {

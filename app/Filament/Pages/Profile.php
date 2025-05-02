@@ -56,6 +56,11 @@ class Profile extends Page implements HasForms
             'currency' => $this->currency,
         ]);
 
+        $this->form->saveState($state);
+        $this->form->save();
+        /** @var \App\Models\User $user */
+        $user = auth()->user();
+        $user->update($state);
         auth()->user()->update($state);
 
         $this->reset(['current_password', 'new_password', 'new_password_confirmation']);
