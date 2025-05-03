@@ -16,11 +16,13 @@ class CreateExpensesTable extends Migration
         Schema::create('expenses', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
-            $table->foreignId('category_id')->constrained();
             $table->string('title');
             $table->decimal('amount', 15, 2);
             $table->date('entry_date');
             $table->timestamps();
+            $table->foreignId('category_id');
+            $table->contrained('categories')->nullable();
+            $table->onDelete('cascade');
         });
     }
 

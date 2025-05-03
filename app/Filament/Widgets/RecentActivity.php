@@ -4,6 +4,7 @@ namespace App\Filament\Widgets;
 
 use Filament\Tables;
 use Filament\Widgets\Widget;
+use Filament\Widgets\TableWidget;
 use Illuminate\Database\Eloquent\Builder;
 use App\Models\Activity;
 use Squire\Models\Currency;
@@ -18,8 +19,12 @@ class RecentActivity extends Widget implements Tables\Contracts\HasTable
 
     protected function formatAmount($value)
     {
-        $currency = auth()->user()->currency ? auth()->user()->currency : 'usd';
-        return Currency::find($currency)->format($value, true);
+        $currency = auth()->user()->currency ? auth()->user()->currency ?? 'idr':'';
+
+        if ($currency === 'idr') {
+            return 'Rp ' . number_format($value, 0, ',', '.');
+        }
+        return '$' . number_format($value, 2);
     }
 
     protected function getTableQuery(): Builder

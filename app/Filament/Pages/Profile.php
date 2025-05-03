@@ -39,8 +39,8 @@ class Profile extends Page implements HasForms
         $this->form->fill([
             'name' => auth()->user()->name,
             'email' => auth()->user()->email,
-            'country' => auth()->user()->country,
-            'currency' => auth()->user()->currency,
+            'country' => auth()->user()->country ?? 'id',
+            'currency' => auth()->user()->currency ?? 'idr',
         ]);
     }
 
@@ -52,8 +52,8 @@ class Profile extends Page implements HasForms
             'name' => $this->name,
             'email' => $this->email,
             'password' => $this->new_password ? Hash::make($this->new_password) : null,
-            'country' => $this->country,
-            'currency' => $this->currency,
+            'country' => $this->country ?? 'id',
+            'currency' => $this->currency ?? 'idr',
         ]);
 
         $this->form->saveState($state);

@@ -72,6 +72,7 @@ class ExpenseResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('amount')
                     ->searchable()
+                    ->money('IDR')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('entry_date')
                     ->sortable()
