@@ -56,12 +56,17 @@ class Profile extends Page implements HasForms
             'currency' => $this->currency ?? 'idr',
         ]);
 
+        // Validasi mata uang hanya boleh 'idr'
+        if ($state['currency'] !== 'idr') {
+            $this->notify('danger', 'Mata uang hanya dapat diatur ke Rupiah (IDR).');
+            return;
+        }
+
         $this->form->saveState($state);
         $this->form->save();
         /** @var \App\Models\User $user */
         $user = auth()->user();
         $user->update($state);
-        auth()->user()->update($state);
 
         $this->reset(['current_password', 'new_password', 'new_password_confirmation']);
         $this->notify('success', 'Your profile has been updated.');
@@ -96,6 +101,8 @@ class Profile extends Page implements HasForms
                 ->columns(2)
                 ->schema([
                     Forms\Components\Select::make('currency')
+                        ->label('Mata Uang (Rupiah)')
+                        ->placeholder('Pilih Mata Uang')
                         ->searchable()
                         ->getSearchResultsUsing(fn (string $query) => Currency::where('name', 'like', "%{$query}%")->pluck('name', 'id'))
                         ->getOptionLabelUsing(fn ($value): ?string => Currency::find($value)?->name)
