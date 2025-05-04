@@ -6,22 +6,18 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+
     public function up(): void
     {
         Schema::create('currencies', function (Blueprint $table) {
             $table->id();
-            $table->string('Rupiah'); // Nama mata uang, misalnya "Rupiah"
-            $table->string('IDR'); // Kode mata uang, misalnya "IDR"
+            $table->string('name'); // Nama mata uang, misalnya "Rupiah"
+            $table->string('code'); // Kode mata uang, misalnya "IDR"
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
+
     public function down(): void
     {
         Schema::dropIfExists('currencies');
