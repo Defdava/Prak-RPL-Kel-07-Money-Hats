@@ -20,7 +20,7 @@ class ExpenseResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-trending-down';
 
-    protected static ?string $navigationGroup = 'Transactions';
+    protected static ?string $navigationGroup = 'Transaksi';
 
     public static function form(Form $form): Form
     {
@@ -32,7 +32,7 @@ class ExpenseResource extends Resource
                             ->required()
                             ->maxLength(255),
                         Forms\Components\BelongsToSelect::make('category_id')
-                            ->relationship('category', 'name')
+                            ->relationship('category', 'name', fn ($query) => $query->whereNull('deleted_at'))
                             ->searchable()
                             ->required(),
                         Forms\Components\TextInput::make('amount')
@@ -68,6 +68,8 @@ class ExpenseResource extends Resource
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('category.name')
+                    ->label('Category')
+                    ->getStateUsing(fn ($record) => $record->category && !$record->category->trashed() ? $record->category->name : 'Deleted Category')
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('amount')
@@ -114,8 +116,10 @@ class ExpenseResource extends Resource
     {
         $details = [];
 
-        if ($record->category) {
+        if ($record->category && !$record->category->trashed()) {
             $details['Category'] = $record->category->name;
+        } else {
+            $details['Category'] = 'Deleted Category';
         }
 
         return $details;

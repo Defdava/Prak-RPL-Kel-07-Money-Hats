@@ -62,14 +62,14 @@ class Profile extends Page implements HasForms
             return;
         }
 
-        $this->form->saveState($state);
-        $this->form->save();
-        /** @var \App\Models\User $user */
-        $user = auth()->user();
-        $user->update($state);
+        if (auth()->user()->update($state)) {
+            $this->reset(['current_password', 'new_password', 'new_password_confirmation']);
+            $this->notify('success', 'Your profile has been updated.');
 
-        $this->reset(['current_password', 'new_password', 'new_password_confirmation']);
-        $this->notify('success', 'Your profile has been updated.');
+            // ke loginnya gagal mulu kontol
+           //return redirect()->to(route('filament.auth.login'));
+
+        }
     }
 
     public function getCancelButtonUrlProperty()
