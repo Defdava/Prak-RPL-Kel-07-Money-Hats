@@ -9,7 +9,7 @@
         "akaunting/laravel-money": "^1.2",
         "blade-ui-kit/blade-heroicons": "^1.5",
         "doctrine/dbal": "^3.3",
-        "filament/filament": "^2.10",
+        "filament/filament": "^2.17",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^10.48.29",
         "laravel/sanctum": "^3.0",

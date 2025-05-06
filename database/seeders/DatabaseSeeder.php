@@ -7,6 +7,8 @@ use App\Models\User;
 use App\Models\Category;
 use App\Models\Expense;
 use App\Models\Income;
+use Squire\Models\Currency;
+use Squire\Models\Country;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,49 +19,44 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-
-        // User::factory()
-        //     ->hasCategories(1, ['name' => 'Food'])
-        //     ->hasCategories(1, ['name' => 'Salary'])
-        //     ->hasCategories(1, ['name' => 'Shopping'])
-        //     ->create([
-        //         'name' => 'Mohsin Shaikh',
-        //         'email' => 'admin@gmail.com',
-        //     ]);
-        // Income::factory(100)->create();
-        // Expense::factory(100)->create();
-        // Category::factory(100)->create();
-
-        // User::factory()
-        //     ->has(Category::factory()->count(10))
-        //     ->has(
-        //         Income::factory()->count(10)
-        //         // ->for(Category::factory()->count(1))
-        //     )
-        //     ->has(Expense::factory()->count(10))
-        //     ->create([
-        //         'name' => 'Mohsin Shaikh',
-        //         'email' => 'admin@gmail.com',
-        //     ]);
-
+        // Create one user
         $user = User::factory()->create([
             'name' => 'Mohsin Shaikh',
             'email' => 'admin@gmail.com',
         ]);
 
+        // Create 10 categories for that user
         $categories = Category::factory(10)->create([
             'user_id' => $user->id,
         ]);
 
+        // Create 100 incomes with random category from the user
         Income::factory(100)->create([
             'user_id' => $user->id,
             'category_id' => $categories->random()->id,
         ]);
 
+        // Create 100 expenses with random category from the user
         Expense::factory(100)->create([
             'user_id' => $user->id,
             'category_id' => $categories->random()->id,
+        ]);
+
+        // Insert Indonesian Rupiah into currencies table (if not exists)
+        Currency::updateOrCreate([
+            'id' => 'idr',
+        ], [
+            'name' => 'Indonesian Rupiah',
+            'code' => 'IDR',
+            'symbol' => 'Rp',
+        ]);
+
+        // Insert Indonesia into countries table (if not exists)
+        Country::updateOrCreate([
+            'id' => 'id',
+        ], [
+            'name' => 'Indonesia',
+            'official_name' => 'Republic of Indonesia',
         ]);
     }
 }

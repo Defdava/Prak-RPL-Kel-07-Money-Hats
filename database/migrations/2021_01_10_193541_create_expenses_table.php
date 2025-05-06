@@ -20,9 +20,10 @@ class CreateExpensesTable extends Migration
             $table->decimal('amount', 15, 2);
             $table->date('entry_date');
             $table->timestamps();
-            $table->foreignId('category_id');
-            $table->contrained('categories')->nullable();
-            $table->onDelete('cascade');
+            $table->foreignId('category_id')
+                  ->nullable()
+                  ->constrained('categories')
+                  ->onDelete('cascade');
         });
     }
 
