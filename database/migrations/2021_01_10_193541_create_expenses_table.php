@@ -13,6 +13,7 @@ class CreateExpensesTable extends Migration
      */
     public function up()
     {
+        // Membuat tabel expenses
         Schema::create('expenses', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained();
@@ -24,6 +25,9 @@ class CreateExpensesTable extends Migration
                   ->nullable()
                   ->constrained('categories')
                   ->onDelete('cascade');
+            $table->foreignId('category_id') // Hanya satu definisi untuk category_id
+                ->constrained('categories')
+                ->onDelete('cascade');
         });
     }
 
