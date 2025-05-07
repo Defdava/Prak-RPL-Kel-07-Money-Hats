@@ -48,6 +48,10 @@ class Profile extends Page implements HasForms
     {
         $this->form->getState();
 
+        $user = auth()->user();
+
+        $passwordChanged = !empty($this->new_password);
+
         $state = array_filter([
             'name' => $this->name,
             'email' => $this->email,
@@ -65,9 +69,15 @@ class Profile extends Page implements HasForms
         if (auth()->user()->update($state)) {
             $this->reset(['current_password', 'new_password', 'new_password_confirmation']);
             $this->notify('success', 'Your profile has been updated.');
-
-            // ke loginnya gagal mulu kontol
-           //return redirect()->to(route('filament.auth.login'));
+            
+            //pas ganti password, langsung route ke login page lagi
+            if ($passwordChanged) {
+                auth()->logout();
+                session()->invalidate();
+                session()->regenerateToken();
+    
+                return redirect()->to(route('filament.auth.login'));
+            }
 
         }
     }

@@ -15,10 +15,16 @@
                 {{ __('register.buttons.submit.label') }}
             </x-filament::button>
 
-            <div class="w-full flex justify-center">
-                <a href="{{ route('filament.auth.login') }}" class="text-gray-600 hover:text-primary-500 focus:outline-none focus:underline">
-                    {{ __('register.links.login.label') }}
-                </a>
+            <div class="w-full flex justify-between items-center">
+            <a href="{{ route('welcome') }}" class="text-gray-600 hover:text-primary-500 focus:outline-none focus:underline">
+            ← Back
+            </a>
+    
+            <a href="{{ route('filament.auth.login') }}" class="text-gray-600 hover:text-primary-500 focus:outline-none focus:underline">
+                     {{ __('register.links.login.label') }}
+            </a>
+            </div>
+
             </div>
         </form>
 

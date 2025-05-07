@@ -25,9 +25,6 @@ class CreateExpensesTable extends Migration
                   ->nullable()
                   ->constrained('categories')
                   ->onDelete('cascade');
-            $table->foreignId('category_id') // Hanya satu definisi untuk category_id
-                ->constrained('categories')
-                ->onDelete('cascade');
         });
     }
 
