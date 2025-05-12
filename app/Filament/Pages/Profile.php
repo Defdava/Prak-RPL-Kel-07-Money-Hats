@@ -111,7 +111,7 @@ class Profile extends Page implements HasForms
                 ->columns(2)
                 ->schema([
                     Forms\Components\Select::make('currency')
-                        ->label('Mata Uang (Rupiah)')
+                        ->label('Currency')
                         ->placeholder('Pilih Mata Uang')
                         ->searchable()
                         ->getSearchResultsUsing(fn (string $query) => Currency::where('name', 'like', "%{$query}%")->pluck('name', 'id'))
