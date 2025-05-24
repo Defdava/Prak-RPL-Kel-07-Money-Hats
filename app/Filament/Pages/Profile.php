@@ -48,6 +48,10 @@ class Profile extends Page implements HasForms
     {
         $this->form->getState();
 
+        $user = auth()->user();
+
+        $passwordChanged = !empty($this->new_password);
+
         $state = array_filter([
             'name' => $this->name,
             'email' => $this->email,
@@ -62,14 +66,20 @@ class Profile extends Page implements HasForms
             return;
         }
 
-        $this->form->saveState($state);
-        $this->form->save();
-        /** @var \App\Models\User $user */
-        $user = auth()->user();
-        $user->update($state);
+        if (auth()->user()->update($state)) {
+            $this->reset(['current_password', 'new_password', 'new_password_confirmation']);
+            $this->notify('success', 'Your profile has been updated.');
+            
+            //pas ganti password, langsung route ke login page lagi
+            if ($passwordChanged) {
+                auth()->logout();
+                session()->invalidate();
+                session()->regenerateToken();
+    
+                return redirect()->to(route('filament.auth.login'));
+            }
 
-        $this->reset(['current_password', 'new_password', 'new_password_confirmation']);
-        $this->notify('success', 'Your profile has been updated.');
+        }
     }
 
     public function getCancelButtonUrlProperty()
@@ -101,7 +111,7 @@ class Profile extends Page implements HasForms
                 ->columns(2)
                 ->schema([
                     Forms\Components\Select::make('currency')
-                        ->label('Mata Uang (Rupiah)')
+                        ->label('Currency')
                         ->placeholder('Pilih Mata Uang')
                         ->searchable()
                         ->getSearchResultsUsing(fn (string $query) => Currency::where('name', 'like', "%{$query}%")->pluck('name', 'id'))

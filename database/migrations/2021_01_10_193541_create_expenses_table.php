@@ -21,9 +21,10 @@ class CreateExpensesTable extends Migration
             $table->decimal('amount', 15, 2);
             $table->date('entry_date');
             $table->timestamps();
-            $table->foreignId('category_id') // Hanya satu definisi untuk category_id
-                ->constrained('categories')
-                ->onDelete('cascade');
+            $table->foreignId('category_id')
+                  ->nullable()
+                  ->constrained('categories')
+                  ->onDelete('cascade');
         });
     }
 
