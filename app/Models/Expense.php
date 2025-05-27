@@ -28,6 +28,8 @@ final class Expense extends Model
 
     protected $with = ['category'];
 
+    protected static ?string $trendColumn = 'entry_date';
+
     protected static function booted(): void
     {
         static::addGlobalScope(new UserVisibilityScope());
